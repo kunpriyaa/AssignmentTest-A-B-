@@ -1,0 +1,30 @@
+// Test Case: getRank()
+assert "High Distinction".equals(getRank("A")) : "Test Failed: Rank for 'A' should be 'High Distinction'";
+assert "Distinction".equals(getRank("B+")) : "Test Failed: Rank for 'B+' should be 'Distinction'";
+assert "Good".equals(getRank("B")) : "Test Failed: Rank for 'B' should be 'Good'";
+assert "Normal".equals(getRank("C+")) : "Test Failed: Rank for 'C+' should be 'Normal'";
+assert "Failed".equals(getRank("F")) : "Test Failed: Rank for 'F' should be 'Failed'";
+assert "Unknown".equals(getRank("Z")) : "Test Failed: Rank for 'Z' should be 'Unknown'";
+ 
+// Test Case: calculateBuddhistEra()
+assert calculateBuddhistEra(2024, 25) == 2542 : "Test Failed: Buddhist Era should be 2542";
+assert calculateBuddhistEra(2024, 30) == 2537 : "Test Failed: Buddhist Era should be 2537";
+ 
+// Test Case: parseFile()
+try {
+    String testFilePath = "testFile.txt";
+    BufferedWriter writer = new BufferedWriter(new FileWriter(testFilePath));
+    writer.write("Name: jame\n");
+    writer.write("Age: 25\n");
+    writer.write("Software Testing Grade: C+\n");
+    writer.close();
+ 
+    String[] result = parseFile(testFilePath);
+    assert "jame".equals(result[0]) : "Test Failed: Name should be 'jame'";
+    assert "25".equals(result[1]) : "Test Failed: Age should be '25'";
+    assert "C+".equals(result[2]) : "Test Failed: Grade should be 'C+'";
+ 
+    new File(testFilePath).delete();
+} catch (Exception e) {
+    System.err.println("Test Failed: parseFile() - " + e.getMessage());
+}
